@@ -3,7 +3,7 @@
 require_relative 'test_helper'
 require_relative '../lib/usecase/process_new_user'
 
-class TestProcess < Minitest::Test
+class TestListener < Minitest::Test
 
   #Given that the process method is called When the message is valid Then should execute without errors
   def test_process_success
