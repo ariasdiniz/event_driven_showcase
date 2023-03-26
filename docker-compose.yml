@@ -1,0 +1,22 @@
+version: "3"
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566-4584:4566-4584"
+    environment:
+      - SERVICES=sqs,dynamodb
+      - DEBUG=1
+    volumes:
+      - "./.localstack:/tmp/localstack"
+
+  sqs:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=sqs,dynamodb
+      - DEBUG=1
+      - AWS_REGION=sa-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    command: sh -c "aws --endpoint-url=http://172.18.0.2:4566 sqs create-queue --queue-name test-queue && \aws --endpoint-url=http://172.18.0.2:4566 dynamodb create-table --table-name test --attribute-definitions AttributeName=primary-id,AttributeType=S AttributeName=secondary-id,AttributeType=S --key-schema AttributeName=primary-id,KeyType=HASH AttributeName=secondary-id,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 && /usr/bin/localstack start"
+
