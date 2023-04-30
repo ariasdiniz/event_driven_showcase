@@ -18,5 +18,5 @@ services:
       - AWS_REGION=sa-east-1
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
-    command: sh -c "aws --endpoint-url=http://172.18.0.2:4566 sqs create-queue --queue-name test-queue && \aws --endpoint-url=http://172.18.0.2:4566 dynamodb create-table --table-name test --attribute-definitions AttributeName=primary_id,AttributeType=S AttributeName=secondary_id,AttributeType=S --key-schema AttributeName=primary_id,KeyType=HASH AttributeName=secondary_id,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 && /usr/bin/localstack start"
+    command: sh -c "aws --endpoint-url=http://172.18.0.3:4566 sqs create-queue --queue-name test-queue && \aws --endpoint-url=http://172.18.0.3:4566 dynamodb create-table --table-name test --attribute-definitions AttributeName=primary_id,AttributeType=S AttributeName=secondary_id,AttributeType=S --key-schema AttributeName=primary_id,KeyType=HASH AttributeName=secondary_id,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 && /usr/bin/localstack start"
 

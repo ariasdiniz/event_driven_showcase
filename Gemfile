@@ -6,7 +6,7 @@ gem "logger", "~> 1.5"
 
 gem "json", "~> 2.6"
 
-gem "macaw_framework", "~> 0.1.3"
+gem "macaw_framework"
 
 gem "aws-sdk-dynamodb", "~> 1.83"
 

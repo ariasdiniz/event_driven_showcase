@@ -22,7 +22,7 @@ class ListenerSqs
   def loop_listen_queue
     loop do
       response = @sqs.receive_message(
-        queue_url: 'http://172.18.0.2:4566/000000000000/test-queue',
+        queue_url: 'http://172.18.0.3:4566/000000000000/test-queue',
         max_number_of_messages: 1
       )
       if response.messages.count.zero?
@@ -35,7 +35,7 @@ class ListenerSqs
 
   def listen_queue_once
     response = @sqs.receive_message(
-      queue_url: 'http://172.18.0.2:4566/000000000000/test-queue',
+      queue_url: 'http://172.18.0.3:4566/000000000000/test-queue',
       max_number_of_messages: 1
     )
     process_messages(response.messages) unless response.messages.count.zero?
@@ -68,7 +68,7 @@ class ListenerSqs
   def delete_message(message)
     @logger.info('Deleting message from queue')
     @sqs.delete_message(
-      queue_url: 'http://172.18.0.2:4566/000000000000/test-queue',
+      queue_url: 'http://172.18.0.3:4566/000000000000/test-queue',
       receipt_handle: message.receipt_handle
     )
     @logger.info('Message deleted')

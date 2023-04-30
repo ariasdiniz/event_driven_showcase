@@ -18,7 +18,7 @@ class ProcessNewUser
   end
 
   private
-  def send_message(message, queue_url = 'http://172.18.0.2:4566/000000000000/test-queue')
+  def send_message(message, queue_url = 'http://172.18.0.3:4566/000000000000/test-queue')
     @logger.info("Sending message #{message} to queue test-queue")
     @sqs.send_message(
       queue_url: queue_url,
